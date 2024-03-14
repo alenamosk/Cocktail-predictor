@@ -52,7 +52,7 @@
         <input
           type="radio"
           id="counting"
-          value="How's counting?"
+          value="How-is-counting"
           v-model="drinks"
         />
         <label for="two">How's counting?</label>
@@ -96,6 +96,12 @@ export default {
       url_base: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
       url_base_non_alcoholic:
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic",
+      url_base_champagne:
+        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=champagne",
+      url_base_rum:
+        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=rum",
+      url_base_vodka:
+        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=vodka",
     };
   },
   methods: {
@@ -103,6 +109,23 @@ export default {
       try {
         let url = this.url_base;
         if (this.age === "Under18") {
+          url = this.url_base_non_alcoholic;
+        }
+        if (this.age === "Over18" && this.mood === "Great") {
+          url = this.url_base_champagne;
+        }
+        if (this.age === "Over18" && this.mood === "Been-better") {
+          url = this.url_base_rum;
+        }
+        if (this.age === "Over18" && this.mood === "Stressed") {
+          url = this.url_base_vodka;
+        }
+        if (
+          (this.age === "Over18" && this.mood === "Okay",
+          "Great",
+          "Been-better",
+          "Stressed" && this.drinks === "How-is-counting")
+        ) {
           url = this.url_base_non_alcoholic;
         }
         const response = await fetch(url);
