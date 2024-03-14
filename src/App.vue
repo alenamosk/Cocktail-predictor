@@ -136,24 +136,10 @@ export default {
           const cocktailData = data.drinks[randomIndex];
 
           const cocktailName = cocktailData.strDrink;
-          const ingredients = [];
-          const measures = [];
-          for (let i = 1; i <= 15; i++) {
-            const ingredient = cocktailData[`strIngredient${i}`];
-            const measure = cocktailData[`strMeasure${i}`];
-            if (ingredient && measure) {
-              ingredients.push(ingredient);
-              measures.push(measure);
-            }
-          }
-          const instructions = cocktailData.strInstructions;
           const image = cocktailData.strDrinkThumb;
 
           const cocktailInfo = {
             name: cocktailName,
-            ingredients: ingredients,
-            measures: measures,
-            instructions: instructions,
             image: image,
           };
 
