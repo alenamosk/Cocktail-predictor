@@ -60,12 +60,15 @@
         <button @click="fetchCocktail">Get me cocktails!</button>
       </div>
 
+      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+
       <div class="card-wrap">
         <div class="card-box">
           <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
           <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
           <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
         </div>
+
         <div class="cocktail-box" v-if="cocktail">
           <img
             :src="cocktail.image"
@@ -74,10 +77,6 @@
             width="350px"
           />
           <h2>{{ cocktail.name }}</h2>
-          <p v-for="(ingredient, index) in cocktail.ingredients" :key="index">
-            {{ cocktail.measures[index] }} {{ ingredient }}
-          </p>
-          <p>{{ cocktail.instructions }}</p>
         </div>
       </div>
     </main>
@@ -102,10 +101,16 @@ export default {
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=rum",
       url_base_vodka:
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=vodka",
+      errorMessage: "",
     };
   },
   methods: {
     async fetchCocktail() {
+      if (!this.age || !this.mood || !this.drinks) {
+        this.errorMessage =
+          "Please answer all questions before getting a cocktail.";
+        return;
+      }
       try {
         let url = this.url_base;
         if (this.age === "Under18") {
@@ -120,16 +125,13 @@ export default {
         if (this.age === "Over18" && this.mood === "Stressed") {
           url = this.url_base_vodka;
         }
-        if (
-          (this.age === "Over18" && this.mood === "Okay",
-          "Great",
-          "Been-better",
-          "Stressed" && this.drinks === "How-is-counting")
-        ) {
+        if (this.age === "Over18" && this.drinks === "How-is-counting") {
           url = this.url_base_non_alcoholic;
         }
         const response = await fetch(url);
         const data = await response.json();
+
+        this.errorMessage = "";
 
         if (data.drinks && data.drinks.length > 0) {
           let randomIndex = Math.floor(Math.random() * data.drinks.length);
@@ -180,5 +182,10 @@ main {
 }
 
 h1 {
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
 </style>
