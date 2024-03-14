@@ -51,6 +51,8 @@
 
         <input type="radio" id="over18" value="Over18" v-model="picked" />
         <label for="two">How's counting?</label>
+
+        <button @click="fetchCocktail">Get me cocktails!</button>
       </div>
 
       <div class="card-wrap">
@@ -58,6 +60,19 @@
           <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
           <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
           <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
+        </div>
+        <div class="cocktail-box" v-if="cocktail">
+          <img
+            :src="cocktail.image"
+            :alt="cocktail.name"
+            height="350px"
+            width="350px"
+          />
+          <h2>{{ cocktail.name }}</h2>
+          <p v-for="(ingredient, index) in cocktail.ingredients" :key="index">
+            {{ cocktail.measures[index] }} {{ ingredient }}
+          </p>
+          <p>{{ cocktail.instructions }}</p>
         </div>
       </div>
     </main>
@@ -69,8 +84,50 @@ export default {
   name: "app",
   data() {
     return {
-      api_key: "1",
+      picked: null,
+      cocktail: null,
+      url_base: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
     };
+  },
+  methods: {
+    async fetchCocktail(e) {
+      try {
+        const response = await fetch(this.url_base);
+        const data = await response.json();
+
+        if (data.drinks && data.drinks.length > 0) {
+          const cocktailData = data.drinks[0];
+
+          const cocktailName = cocktailData.strDrink;
+          const ingredients = [];
+          const measures = [];
+          for (let i = 1; i <= 15; i++) {
+            const ingredient = cocktailData[`strIngredient${i}`];
+            const measure = cocktailData[`strMeasure${i}`];
+            if (ingredient && measure) {
+              ingredients.push(ingredient);
+              measures.push(measure);
+            }
+          }
+          const instructions = cocktailData.strInstructions;
+          const image = cocktailData.strDrinkThumb;
+
+          const cocktailInfo = {
+            name: cocktailName,
+            ingredients: ingredients,
+            measures: measures,
+            instructions: instructions,
+            image: image,
+          };
+
+          this.cocktail = cocktailInfo;
+        } else {
+          console.error("No cocktail data found in response.");
+        }
+      } catch (error) {
+        console.error("Error fetching cocktail:", error);
+      }
+    },
   },
 };
 </script>
