@@ -16,40 +16,45 @@
 
         <div>How old are you?</div>
 
-        <input type="radio" id="under18" value="Under18" v-model="picked" />
+        <input type="radio" id="under18" value="Under18" v-model="age" />
         <label for="one">Under 18 years of age</label>
 
-        <input type="radio" id="over18" value="Over18" v-model="picked" />
+        <input type="radio" id="over18" value="Over18" v-model="age" />
         <label for="two">Over 18 years of age</label>
 
         <div>How are you today?</div>
 
-        <input type="radio" id="okay" value="Okay" v-model="picked" />
+        <input type="radio" id="okay" value="Okay" v-model="mood" />
         <label for="one">Okay</label>
 
-        <input type="radio" id="great" value="Great" v-model="picked" />
+        <input type="radio" id="great" value="Great" v-model="mood" />
         <label for="two">Great</label>
 
         <input
           type="radio"
           id="been-better"
           value="Been-better"
-          v-model="picked"
+          v-model="mood"
         />
         <label for="two">I've been better</label>
 
-        <input type="radio" id="stressed" value="Stressed" v-model="picked" />
+        <input type="radio" id="stressed" value="Stressed" v-model="mood" />
         <label for="two">Stressed out</label>
 
         <div>How much drinks have you had already?</div>
 
-        <input type="radio" id="under18" value="Under18" v-model="picked" />
+        <input type="radio" id="oneTwo" value="1-2" v-model="drinks" />
         <label for="one">1-2</label>
 
-        <input type="radio" id="over18" value="Over18" v-model="picked" />
+        <input type="radio" id="threeFour" value="3-4" v-model="drinks" />
         <label for="two">3-4</label>
 
-        <input type="radio" id="over18" value="Over18" v-model="picked" />
+        <input
+          type="radio"
+          id="counting"
+          value="How's counting?"
+          v-model="drinks"
+        />
         <label for="two">How's counting?</label>
 
         <button @click="fetchCocktail">Get me cocktails!</button>
@@ -84,19 +89,28 @@ export default {
   name: "app",
   data() {
     return {
-      picked: null,
+      age: null,
+      mood: null,
+      drinks: null,
       cocktail: null,
       url_base: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+      url_base_non_alcoholic:
+        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic",
     };
   },
   methods: {
-    async fetchCocktail(e) {
+    async fetchCocktail() {
       try {
-        const response = await fetch(this.url_base);
+        let url = this.url_base;
+        if (this.age === "Under18") {
+          url = this.url_base_non_alcoholic;
+        }
+        const response = await fetch(url);
         const data = await response.json();
 
         if (data.drinks && data.drinks.length > 0) {
-          const cocktailData = data.drinks[0];
+          let randomIndex = Math.floor(Math.random() * data.drinks.length);
+          const cocktailData = data.drinks[randomIndex];
 
           const cocktailName = cocktailData.strDrink;
           const ingredients = [];
