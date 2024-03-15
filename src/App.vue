@@ -57,26 +57,32 @@
         />
         <label for="two">How's counting?</label>
 
-        <button @click="fetchCocktail">Get me cocktails!</button>
+        <button @click="flipCard">Get me cocktails!</button>
       </div>
 
       <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
 
-      <div class="card-wrap">
-        <div class="card-box">
-          <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
-          <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
-          <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
-        </div>
+      <div class="flip-box" :class="{ hovered: cocktail }">
+        <div class="flip-card-wrap">
+          <div class="card-box-front">
+            <img
+              src="./assets/card-back-side.PNG"
+              height="350px"
+              width="350px"
+            />
+            <!-- <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
+          <img src="./assets/card-back-side.PNG" height="350px" width="350px" /> -->
+          </div>
 
-        <div class="cocktail-box" v-if="cocktail">
-          <img
-            :src="cocktail.image"
-            :alt="cocktail.name"
-            height="350px"
-            width="350px"
-          />
-          <h2>{{ cocktail.name }}</h2>
+          <div class="cocktail-box-back" v-if="cocktail">
+            <img
+              :src="cocktail.image"
+              :alt="cocktail.name"
+              height="350px"
+              width="350px"
+            />
+            <h2>{{ cocktail.name }}</h2>
+          </div>
         </div>
       </div>
     </main>
@@ -105,12 +111,15 @@ export default {
     };
   },
   methods: {
-    async fetchCocktail() {
+    flipCard() {
       if (!this.age || !this.mood || !this.drinks) {
         this.errorMessage =
           "Please answer all questions before getting a cocktail.";
         return;
       }
+      this.fetchCocktail();
+    },
+    async fetchCocktail() {
       try {
         let url = this.url_base;
         if (this.age === "Under18") {
@@ -146,6 +155,8 @@ export default {
           };
 
           this.cocktail = cocktailInfo;
+
+          document.querySelector(".flip-box").classList.add("hovered");
         } else {
           console.error("No cocktail data found in response.");
         }
@@ -187,5 +198,46 @@ h1 {
 .error-message {
   color: red;
   margin-top: 10px;
+}
+
+.flip-box {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+
+.flip-card-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-box.hovered .flip-card-wrap {
+  transform: rotateY(180deg);
+}
+
+.card-box-front,
+.cocktail-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-box-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.cocktail-box-back {
+  background-color: #555;
+  color: white;
+  transform: rotateY(180deg);
 }
 </style>
