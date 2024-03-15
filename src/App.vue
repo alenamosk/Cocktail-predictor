@@ -9,8 +9,8 @@
       </div>
 
       <div class="main-content">
-        <div class="questioner">
-          <h2>I have just a few questions for you</h2>
+        <div class="questionnaire">
+          <h2>First you need to fill out a short questionnaire</h2>
 
           <div class="questions">
             <p>How old are you?</p>
@@ -61,7 +61,7 @@
             <label for="two">How's counting?</label>
           </div>
 
-          <button @click="flipCard">Get me cocktails!</button>
+          <button id="button" @click="flipCard">Get me cocktails!</button>
         </div>
 
         <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
@@ -79,13 +79,15 @@
             </div>
 
             <div class="cocktail-box-back" v-if="cocktail">
+              <p>This is your cocktail for today</p>
+              <h2>"{{ cocktail.name }}"</h2>
               <img
+                class="cocktail-img"
                 :src="cocktail.image"
                 :alt="cocktail.name"
                 height="350px"
                 width="350px"
               />
-              <h2>{{ cocktail.name }}</h2>
             </div>
           </div>
         </div>
@@ -196,11 +198,16 @@ main {
   margin-bottom: 20px;
   padding: 40px;
   border-radius: 30px;
+  display: flex;
 }
 
 .greetings-box {
   text-align: center;
   color: white;
+}
+
+.questionnaire {
+  padding-right: 25px;
 }
 
 .questions {
@@ -224,6 +231,15 @@ main {
 }
 
 h1 {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+h2 {
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 10px;
 }
 
 .error-message {
@@ -231,10 +247,15 @@ h1 {
   margin-top: 10px;
 }
 
+#button {
+  margin-bottom: 25px;
+}
+
 .flip-box {
+  display: flex;
   background-color: transparent;
   width: 350px;
-  height: 350px;
+  height: 400px;
   /* border: 1px solid #f1f1f1; */
   perspective: 1000px;
 }
@@ -267,21 +288,15 @@ h1 {
 }
 
 .cocktail-box-back {
-  background-color: #555;
-  color: white;
+  background-color: #e7d3fd;
+  /* color: white; */
+  border-radius: 10px;
   transform: rotateY(180deg);
 }
 
-h2 {
-  color: black;
-  background-size: 10px;
+.cocktail-img {
+  border-radius: 10px;
 }
-
-/* .questioner {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-} */
 
 .greetings-box {
   margin: 20px;
