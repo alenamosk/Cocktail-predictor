@@ -1,17 +1,14 @@
 <template>
   <div id="app">
     <main>
-      <div class="centered-wrapper">
-        <div class="greetings-box">
-          <h1>🔮</h1>
-          <h1>Welcome to Cocktail Predictor</h1>
-          <p>If you don't know what to drink, then get ready!</p>
-          <p>Cocktail predictor will choose the best options for you</p>
-          <button>Start the magic</button>
-        </div>
+      <div class="greetings-box">
+        <h1>Welcome to Cocktail Predictor</h1>
+        <p>If you don't know what to drink, then get ready!</p>
+        <p>Cocktail predictor will choose the best options for you</p>
+        <h1>🔮</h1>
       </div>
 
-      <div>
+      <div class="questioner">
         <h2>I have just a few questions for you</h2>
 
         <div>How old are you?</div>
@@ -44,7 +41,7 @@
         <div>How much drinks have you had already?</div>
 
         <input type="radio" id="oneTwo" value="1-2" v-model="drinks" />
-        <label for="one">1-2</label>
+        <label for="one">0-2</label>
 
         <input type="radio" id="threeFour" value="3-4" v-model="drinks" />
         <label for="two">3-4</label>
@@ -170,26 +167,28 @@ export default {
 
 <style>
 #app {
+  background-image: url(./assets/beeautiful-landscape-with-mountain-starry-sky.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 main {
-  min-height: 100vh;
-  padding: 25px;
+  /* min-height: 100vh; */
+  /* padding: 25px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .card {
   height: 100px;
 }
 
-.centered-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
 .greetings-box {
   text-align: center;
+  color: white;
 }
 
 h1 {
@@ -202,8 +201,8 @@ h1 {
 
 .flip-box {
   background-color: transparent;
-  width: 300px;
-  height: 200px;
+  width: 350px;
+  height: 350px;
   border: 1px solid #f1f1f1;
   perspective: 1000px;
 }
@@ -239,5 +238,18 @@ h1 {
   background-color: #555;
   color: white;
   transform: rotateY(180deg);
+}
+
+h2 {
+  color: black;
+  background-size: 10px;
+}
+
+.questioner {
+  background-color: white;
+  opacity: 0.9;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 30px;
 }
 </style>
