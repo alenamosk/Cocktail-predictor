@@ -8,77 +8,85 @@
         <h1>🔮</h1>
       </div>
 
-      <div class="questioner">
-        <h2>I have just a few questions for you</h2>
+      <div class="main-content">
+        <div class="questioner">
+          <h2>I have just a few questions for you</h2>
 
-        <div>How old are you?</div>
+          <div class="questions">
+            <p>How old are you?</p>
 
-        <input type="radio" id="under18" value="Under18" v-model="age" />
-        <label for="one">Under 18 years of age</label>
+            <input type="radio" id="under18" value="Under18" v-model="age" />
+            <label for="one">Under 18 years of age</label><br />
 
-        <input type="radio" id="over18" value="Over18" v-model="age" />
-        <label for="two">Over 18 years of age</label>
-
-        <div>How are you today?</div>
-
-        <input type="radio" id="okay" value="Okay" v-model="mood" />
-        <label for="one">Okay</label>
-
-        <input type="radio" id="great" value="Great" v-model="mood" />
-        <label for="two">Great</label>
-
-        <input
-          type="radio"
-          id="been-better"
-          value="Been-better"
-          v-model="mood"
-        />
-        <label for="two">I've been better</label>
-
-        <input type="radio" id="stressed" value="Stressed" v-model="mood" />
-        <label for="two">Stressed out</label>
-
-        <div>How much drinks have you had already?</div>
-
-        <input type="radio" id="oneTwo" value="1-2" v-model="drinks" />
-        <label for="one">0-2</label>
-
-        <input type="radio" id="threeFour" value="3-4" v-model="drinks" />
-        <label for="two">3-4</label>
-
-        <input
-          type="radio"
-          id="counting"
-          value="How-is-counting"
-          v-model="drinks"
-        />
-        <label for="two">How's counting?</label>
-
-        <button @click="flipCard">Get me cocktails!</button>
-      </div>
-
-      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
-
-      <div class="flip-box" :class="{ hovered: cocktail }">
-        <div class="flip-card-wrap">
-          <div class="card-box-front">
-            <img
-              src="./assets/card-back-side.PNG"
-              height="350px"
-              width="350px"
-            />
-            <!-- <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
-          <img src="./assets/card-back-side.PNG" height="350px" width="350px" /> -->
+            <input type="radio" id="over18" value="Over18" v-model="age" />
+            <label for="two">Over 18 years of age</label>
           </div>
 
-          <div class="cocktail-box-back" v-if="cocktail">
-            <img
-              :src="cocktail.image"
-              :alt="cocktail.name"
-              height="350px"
-              width="350px"
+          <div class="questions">
+            <p>How are you today?</p>
+
+            <input type="radio" id="okay" value="Okay" v-model="mood" />
+            <label for="one">Okay</label><br />
+
+            <input type="radio" id="great" value="Great" v-model="mood" />
+            <label for="two">Great</label><br />
+
+            <input
+              type="radio"
+              id="been-better"
+              value="Been-better"
+              v-model="mood"
             />
-            <h2>{{ cocktail.name }}</h2>
+            <label for="two">I've been better</label><br />
+
+            <input type="radio" id="stressed" value="Stressed" v-model="mood" />
+            <label for="two">Stressed out</label><br />
+          </div>
+
+          <div class="questions">
+            <p>How much drinks have you had already?</p>
+
+            <input type="radio" id="zero-two" value="1-2" v-model="drinks" />
+            <label for="one">0-2</label><br />
+
+            <input type="radio" id="three-four" value="3-4" v-model="drinks" />
+            <label for="two">3-4</label><br />
+
+            <input
+              type="radio"
+              id="counting"
+              value="How-is-counting"
+              v-model="drinks"
+            />
+            <label for="two">How's counting?</label>
+          </div>
+
+          <button @click="flipCard">Get me cocktails!</button>
+        </div>
+
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+        <div class="flip-box" :class="{ hovered: cocktail }">
+          <div class="flip-card-wrap">
+            <div class="card-box-front">
+              <img
+                src="./assets/card-back-side.PNG"
+                height="350px"
+                width="350px"
+              />
+              <!-- <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
+          <img src="./assets/card-back-side.PNG" height="350px" width="350px" /> -->
+            </div>
+
+            <div class="cocktail-box-back" v-if="cocktail">
+              <img
+                :src="cocktail.image"
+                :alt="cocktail.name"
+                height="350px"
+                width="350px"
+              />
+              <h2>{{ cocktail.name }}</h2>
+            </div>
           </div>
         </div>
       </div>
@@ -182,13 +190,37 @@ main {
   flex-direction: column;
 }
 
-.card {
-  height: 100px;
+.main-content {
+  background-color: white;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  padding: 40px;
+  border-radius: 30px;
 }
 
 .greetings-box {
   text-align: center;
   color: white;
+}
+
+.questions {
+  margin-bottom: 10px;
+}
+
+#under18,
+#over18,
+#okay,
+#great,
+#been-better,
+#stressed,
+#zero-two,
+#three-four,
+#counting {
+  margin-right: 10px;
+}
+
+.card {
+  height: 100px;
 }
 
 h1 {
@@ -203,7 +235,7 @@ h1 {
   background-color: transparent;
   width: 350px;
   height: 350px;
-  border: 1px solid #f1f1f1;
+  /* border: 1px solid #f1f1f1; */
   perspective: 1000px;
 }
 
@@ -230,7 +262,7 @@ h1 {
 }
 
 .card-box-front {
-  background-color: #bbb;
+  /* background-color: #bbb; */
   color: black;
 }
 
@@ -245,11 +277,14 @@ h2 {
   background-size: 10px;
 }
 
-.questioner {
-  background-color: white;
-  opacity: 0.9;
+/* .questioner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+} */
+
+.greetings-box {
   margin: 20px;
   padding: 20px;
-  border-radius: 30px;
 }
 </style>
