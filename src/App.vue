@@ -174,6 +174,10 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 #app {
   background-image: url(./assets/beeautiful-landscape-with-mountain-starry-sky.jpg);
   background-position: center;
@@ -292,6 +296,7 @@ h2 {
 
 .cocktail-img {
   border-radius: 10px;
+  width: 100%;
 }
 
 #button {
@@ -309,5 +314,10 @@ h2 {
 #button:hover {
   background-color: #642b6b;
   color: white;
+}
+
+.cocktail-box-back {
+  display: flex;
+  flex-direction: column;
 }
 </style>
