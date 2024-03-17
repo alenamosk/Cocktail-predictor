@@ -2,8 +2,8 @@
 
 Cocktail Predictor is a small web application that provides users with cocktail recommendations. By answering a few questions, users can discover the perfect cocktail for their mood. The application fetches cocktail information, including images and details, from an api source, ensuring a diverse selection of options for users to explore.
 
-<img src="asset/front-side.png" style="width: 400px; height: 300px;">
-<img src="asset/back-side.png" style="width: 400px; height: 300px;">
+<img src="./src/assets/front-side.png" style="width: 600px; height: 300px;">
+<img src="./src/assets/back-side.png" style="width: 600px; height: 300px;">
 
 ## Project Status
 
