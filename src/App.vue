@@ -61,7 +61,7 @@
             <label for="two">How's counting?</label>
           </div>
 
-          <button id="button" @click="flipCard">Get me cocktails!</button>
+          <button id="button" @click="flipCard">Give me a cocktail!</button>
         </div>
 
         <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
@@ -74,8 +74,6 @@
                 height="400px"
                 width="350px"
               />
-              <!-- <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
-          <img src="./assets/card-back-side.PNG" height="350px" width="350px" /> -->
             </div>
 
             <div class="cocktail-box-back" v-if="cocktail">
@@ -184,8 +182,6 @@ export default {
 }
 
 main {
-  /* min-height: 100vh; */
-  /* padding: 25px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,11 +248,11 @@ h2 {
 }
 
 .flip-box {
+  margin-top: 10px;
   display: flex;
   background-color: transparent;
   width: 350px;
   height: 400px;
-  /* border: 1px solid #f1f1f1; */
   perspective: 1000px;
 }
 
@@ -283,13 +279,11 @@ h2 {
 }
 
 .card-box-front {
-  /* background-color: #bbb; */
   color: black;
 }
 
 .cocktail-box-back {
   background-color: #e7d3fd;
-  /* color: white; */
   border-radius: 10px;
   transform: rotateY(180deg);
 }
