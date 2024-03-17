@@ -192,7 +192,7 @@ main {
   background-color: white;
   opacity: 0.9;
   margin-bottom: 20px;
-  padding: 40px;
+  padding: 30px;
   border-radius: 30px;
   display: flex;
 }
@@ -200,6 +200,8 @@ main {
 .greetings-box {
   text-align: center;
   color: white;
+  margin: 15px;
+  padding: 15px;
 }
 
 .questionnaire {
@@ -290,11 +292,6 @@ h2 {
 
 .cocktail-img {
   border-radius: 10px;
-}
-
-.greetings-box {
-  margin: 20px;
-  padding: 20px;
 }
 
 #button {
