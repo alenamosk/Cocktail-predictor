@@ -3,23 +3,23 @@
     <main>
       <div class="greetings-box">
         <h1>Welcome to Cocktail Predictor</h1>
-        <p>If you don't know what to drink, then get ready!</p>
-        <p>Cocktail predictor will choose the best options for you</p>
+        <h3>If you don't know what to drink, then get ready!</h3>
+        <h3>Cocktail predictor will choose the best option for you</h3>
         <h1>🔮</h1>
       </div>
 
       <div class="main-content">
         <div class="questionnaire">
-          <h2>First you need to fill out a short questionnaire</h2>
+          <h2>First, you need to fill out a short questionnaire</h2>
 
           <div class="questions">
             <p>How old are you?</p>
 
             <input type="radio" id="under18" value="Under18" v-model="age" />
-            <label for="one">Under 18 years of age</label><br />
+            <label for="one">Under 18</label><br />
 
             <input type="radio" id="over18" value="Over18" v-model="age" />
-            <label for="two">Over 18 years of age</label>
+            <label for="two">18+</label>
           </div>
 
           <div class="questions">
@@ -71,7 +71,7 @@
             <div class="card-box-front">
               <img
                 src="./assets/card-back-side.PNG"
-                height="350px"
+                height="400px"
                 width="350px"
               />
               <!-- <img src="./assets/card-back-side.PNG" height="350px" width="350px" />
@@ -301,5 +301,22 @@ h2 {
 .greetings-box {
   margin: 20px;
   padding: 20px;
+}
+
+#button {
+  background-color: #e7d3fd;
+  color: black;
+  font-size: 16px;
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#button:hover {
+  background-color: #642b6b;
+  color: white;
 }
 </style>
