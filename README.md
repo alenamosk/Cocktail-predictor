@@ -12,7 +12,11 @@ Cocktail Predictor is still a work in progress. This project is primarily for st
 ### Features
 
 - **Personalised Recommendations:** Users answer three questions about their age, mood and how many drinks they already had.
-- **Dynamic Suggestions:** Based on the user's responses, the application generates a cocktail. Users under 18 years old will get only non-alcoholic options. Users 18+ years of age will receive cocktails based on their answers to the second question about their mood. Answer “Okay” will generate any random cocktail, “Great” - a random cocktail with champagne, “I’ve been better” - a random cocktail with rum, “Stressed out” - a random cocktail with vodka, but if the user chooses to answer “Who’s counting” on the third question about the quantity of drinks that he has had - the application displays only non-alcoholic options.
+- **Dynamic Suggestions:** Based on the user's responses, the application generates a perfect cocktail for current condition of the user:
+  - Users under 18 years old will receive only non-alcoholic options.
+  - Users 18+ years old will get cocktails based on their mood.
+  - "Okay" generates any random cocktail, "Great" suggests one with champagne, "I’ve been better" offers rum-based cocktails, and "Stressed out" presents vodka-based options.
+  - If the user selects "Who’s counting" when asked about the quantity of drinks they've had, the application displays only non-alcoholic options.
 - **Cocktail Details:** Each recommended cocktail is accompanied by its name and an enticing image.
 - **API Integration:** The application integrates with an API to fetch information about a wide range of cocktails, ensuring a diverse and extensive selection for users to explore.
 
