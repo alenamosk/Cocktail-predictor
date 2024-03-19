@@ -10,7 +10,9 @@
 
       <div class="main-content">
         <div class="questionnaire">
-          <h2>First, you need to fill out a short questionnaire</h2>
+          <h2 class="title">
+            First, you need to fill out a short questionnaire
+          </h2>
 
           <div class="questions">
             <p>How old are you?</p>
@@ -62,14 +64,17 @@
           </div>
 
           <button id="button" @click="flipCard">Give me a cocktail!</button>
-        </div>
 
-        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <div v-if="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+        </div>
 
         <div class="flip-box" :class="{ hovered: cocktail }">
           <div class="flip-card-wrap">
             <div class="card-box-front">
               <img
+                class="card-front-side"
                 src="./assets/card-back-side.PNG"
                 height="400px"
                 width="350px"
@@ -179,40 +184,70 @@ export default {
 }
 
 #app {
-  background-image: url(./assets/beeautiful-landscape-with-mountain-starry-sky.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
-main {
+body {
+  background-image: url(./assets/beeautiful-landscape-with-mountain-starry-sky.jpg);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+}
+
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-size: 5px;
+  padding: 10px;
 }
 
 .main-content {
   background-color: white;
   opacity: 0.9;
-  margin-bottom: 20px;
-  padding: 30px;
-  border-radius: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 20px;
+  border-radius: 10px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .greetings-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  flex-direction: column;
   color: white;
+  padding: 20px;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.questionnaire {
   margin: 15px;
   padding: 15px;
 }
 
-.questionnaire {
-  padding-right: 25px;
+h2 {
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
 }
 
-.questions {
+.questions,
+.title {
   margin-bottom: 10px;
 }
 
@@ -228,82 +263,11 @@ main {
   margin-right: 10px;
 }
 
-.card {
-  height: 100px;
-}
-
-h1 {
-  font-weight: bold;
-  font-size: 30px;
-}
-
-h2 {
-  color: black;
-  font-weight: bold;
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
-
-#button {
-  margin-bottom: 25px;
-}
-
-.flip-box {
-  margin-top: 10px;
-  display: flex;
-  background-color: transparent;
-  width: 350px;
-  height: 400px;
-  perspective: 1000px;
-}
-
-.flip-card-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.flip-box.hovered .flip-card-wrap {
-  transform: rotateY(180deg);
-}
-
-.card-box-front,
-.cocktail-box-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.card-box-front {
-  color: black;
-}
-
-.cocktail-box-back {
-  background-color: #e7d3fd;
-  border-radius: 10px;
-  transform: rotateY(180deg);
-}
-
-.cocktail-img {
-  border-radius: 10px;
-  width: 100%;
-}
-
 #button {
   background-color: #e7d3fd;
   color: black;
-  font-size: 16px;
-  margin-top: 15px;
+  font-size: 15px;
+  margin-top: 10px;
   padding: 8px 16px;
   border: none;
   cursor: pointer;
@@ -316,8 +280,111 @@ h2 {
   color: white;
 }
 
-.cocktail-box-back {
+.error-message {
+  color: red;
+  padding-top: 10px;
+}
+
+.flip-box {
+  margin: 0 auto;
+  /* margin-left: 30px;
+  margin-right: -30px; */
+  /* padding-bottom: 20px; */
+  /* margin: 20px; */
   display: flex;
-  flex-direction: column;
+  background-color: transparent;
+  width: 350px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.flip-card-wrap {
+  position: relative;
+  width: 350px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-box.hovered .flip-card-wrap {
+  transform: rotateY(180deg);
+}
+
+.card-box-front,
+.cocktail-box-back {
+  position: absolute;
+  width: 350px;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-box-front {
+  color: black;
+  /* width: 350px; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.cocktail-box-back {
+  background-color: #e7d3fd;
+  border-radius: 10px;
+  transform: rotateY(180deg);
+}
+
+/* .card-front-side {
+  width: 350px;
+} */
+
+.cocktail-img {
+  border-radius: 10px;
+  /* width: 350px; */
+}
+
+@media screen and (min-width: 480px) {
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 5px;
+    /* padding: 10px; */
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .main-content {
+    background-color: white;
+    opacity: 0.9;
+    /* margin-bottom: 20px; */
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    max-width: 1200px;
+    min-width: 720px;
+    /* margin: 0 auto; */
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .questionnaire {
+    /* margin: 0 auto; */
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .flip-box {
+    /* margin-top: 10px; */
+    /* margin: 0 auto; */
+    display: flex;
+    background-color: transparent;
+    max-width: 100%;
+    /* width: 350px; */
+    height: 400px;
+    perspective: 1000px;
+  }
 }
 </style>
