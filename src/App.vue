@@ -183,16 +183,13 @@ export default {
   box-sizing: border-box;
 }
 
-#app {
-}
-
 body {
   background-image: url(./assets/beeautiful-landscape-with-mountain-starry-sky.jpg);
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   overflow: hidden;
-
+  overflow-y: scroll;
   display: flex;
   justify-content: center;
 }
@@ -287,10 +284,6 @@ h2 {
 
 .flip-box {
   margin: 0 auto;
-  /* margin-left: 30px;
-  margin-right: -30px; */
-  /* padding-bottom: 20px; */
-  /* margin: 20px; */
   display: flex;
   background-color: transparent;
   width: 350px;
@@ -321,10 +314,6 @@ h2 {
 
 .card-box-front {
   color: black;
-  /* width: 350px; */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 
 .cocktail-box-back {
@@ -333,13 +322,8 @@ h2 {
   transform: rotateY(180deg);
 }
 
-/* .card-front-side {
-  width: 350px;
-} */
-
 .cocktail-img {
   border-radius: 10px;
-  /* width: 350px; */
 }
 
 @media screen and (min-width: 480px) {
@@ -348,6 +332,7 @@ h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    justify-content: space-around;
     font-size: 5px;
     /* padding: 10px; */
   }
@@ -357,33 +342,22 @@ h2 {
   .main-content {
     background-color: white;
     opacity: 0.9;
-    /* margin-bottom: 20px; */
-    padding: 30px;
     border-radius: 30px;
     display: flex;
     flex-direction: row;
     justify-items: center;
     max-width: 1200px;
     min-width: 720px;
-    /* margin: 0 auto; */
-  }
-}
-
-@media screen and (min-width: 480px) {
-  .questionnaire {
-    /* margin: 0 auto; */
   }
 }
 
 @media screen and (min-width: 480px) {
   .flip-box {
-    /* margin-top: 10px; */
-    /* margin: 0 auto; */
     display: flex;
     background-color: transparent;
     max-width: 100%;
-    /* width: 350px; */
     height: 400px;
+    margin-right: 30px;
     perspective: 1000px;
   }
 }
