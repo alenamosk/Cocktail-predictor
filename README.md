@@ -5,6 +5,8 @@ Cocktail Predictor is a small web application that provides users with cocktail 
 <img src="./src/assets/front-side.png" style="width: 600px; height: 300px;">
 <img src="./src/assets/back-side.png" style="width: 600px; height: 300px;">
 
+**<a href="https://alenamosk.github.io/Cocktail-predictor/">Live Demo</a>**
+
 ## Project Status
 
 Cocktail Predictor is still a work in progress. This project is primarily for studying the Vue.js framework and deepening my understanding of web development, but it's also designed to be fun! Learning is much more enjoyable when it's paired with something entertaining :)
